@@ -7,7 +7,13 @@ export const SDK = {
       },
   subscribe : function(symbol)  {
       const {EventBus} = require('./EventBus');
-      let ws = new WebSocket('wss://stream.binance.com:9443/ws/'+`${symbol.toLowerCase()}@depth`);
-      return ws;
+      if(process.isServer) {
+        const WebSocket = require('ws')
+        let ws = new WebSocket('wss://stream.binance.com:9443/ws/'+`${symbol.toLowerCase()}@depth`);
+        return ws;
+      } 
+        let ws = new WebSocket('wss://stream.binance.com:9443/ws/'+`${symbol.toLowerCase()}@depth`);
+        return ws;
+      
   }
 };

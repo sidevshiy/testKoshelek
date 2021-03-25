@@ -13,6 +13,8 @@
 
 <script>
 import navBar from "./components/NavBar.vue";
+import GlassState from './components/GlassState.vue';
+import DiffList from './components/DiffList.vue';
 
 export default {
   name: "app",
@@ -29,8 +31,8 @@ export default {
   },
   components: {
     navBar,
-    GlassState : () => import(/* webpackChunkName:"GlassState" */'./components/GlassState.vue'),  // функциональный импорт, webpack создаст отдельный бандл с ленивой загрузкой
-    DiffList :   () => import(/* webpackChunkName:"DiffList" */'./components/DiffList.vue'),      // функциональный импорт, webpack создаст отдельный бандл с ленивой загрузкой
+    GlassState,
+    DiffList
   },
 
 };

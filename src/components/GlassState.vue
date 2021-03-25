@@ -21,6 +21,18 @@ export default {
     symbol: "BTCUSDT",
     ws : null
   }),
+    // TODO SSR рендерит, но не обновляется, нужно решить
+  async serverPrefetch () {
+    // возвращает Promise из действия, поэтому
+    // компонент ждёт данные перед рендерингом
+    await this.snapshot();
+    this.wsSubscribe();
+    this.$bus.$on("symbol",  symbol => {
+      this.symbol = symbol;
+      this.ws.close();
+      this.wsSubscribe();
+    });
+  },
   async created() {
     await this.snapshot();
     this.wsSubscribe();

@@ -5,10 +5,14 @@ import axios from 'axios';
 
 Vue.config.productionTip = false;
 Vue.prototype.$http = axios;
-//Vue.prototype.$http.defaults.baseURL = 'https://cors-anywhere.herokuapp.com/'+ process.env.VUE_APP_API_BINANCE;
 Vue.prototype.$http.defaults.baseURL = 'https://cors-anywhere.herokuapp.com/wss://stream.binance.com:9443/ws/';
 Vue.use(myCore);
 
-new Vue({
-  render: h => h(App),
-}).$mount('#app');
+function createApp(){
+  return new Vue({
+    render: h => h(App),
+  })
+}
+
+
+export default createApp;
